@@ -3,7 +3,7 @@ import discord
 token = 'die'
 # Your bot token from https://discord.com/developers/applications
 
-prefix = 'dhar '
+prefix = ['dhar ', 'Dhar ', 'DHAR ']
 # Bot will listen for commands starting with this prefix
 
 activity = discord.Activity(name=f'{prefix}help', type=2)
