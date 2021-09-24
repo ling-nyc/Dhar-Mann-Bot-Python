@@ -20,3 +20,6 @@ triggers = ['@here', '@everyone']
 
 ownerID = 822679038434213908
 # Put your user id here, lets you reload the bot
+
+cat_key = ''
+# Get an api key from https://thecatapi.com/
