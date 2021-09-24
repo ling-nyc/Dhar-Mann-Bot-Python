@@ -6,6 +6,7 @@ import re
 from discord.ext import commands
 from pretty_help import PrettyHelp
 from insultgenerator import phrases
+import requests
 from faker import Faker
 faker = Faker()
 
@@ -52,6 +53,38 @@ class Wisdom(commands.Cog):
         doxEmbed.set_thumbnail(url=user.avatar_url)
 
         await ctx.send(embed=doxEmbed)
+    @commands.command(help='Gets a random cat picture')
+    async def cat(self, ctx):
+        req = requests.get(
+            f"https://api.thecatapi.com/v1/images/search?format=json&x-api-key={config.cat_key}")
+        r = req.json()
+        em = discord.Embed(title='Cat 🐱')
+        em.set_author(
+            name=f'Requested by {ctx.author}', icon_url=ctx.author.avatar_url)
+        em.set_image(url=str(r[0]["url"]))
+        await ctx.send(embed=em)
+    @commands.command(help='Snipe the last deleted message')
+    async def snipe(self, ctx):
+        if self.bot.snipedMessage:
+            content = self.bot.snipedMessage.content
+            content = content if content else '** **'
+            author = self.bot.snipedMessage.author
+            timestamp = str(self.bot.snipedMessage.created_at
+                            ).split('.')[0] + ' UTC'
+
+            em = discord.Embed(
+                color=discord.Color.random()
+            )
+            em.set_author(
+                name=f'Requested by {ctx.author}', icon_url=ctx.author.avatar_url)
+            em.add_field(name='Sniped Message', value=f'{content}')
+            em.set_footer(text=f'{author}, at {timestamp}',
+                          icon_url=author.avatar_url)
+
+            await ctx.send(embed=em)
+        else:
+            await ctx.send('No message to snipe!')
+
 
 
 
