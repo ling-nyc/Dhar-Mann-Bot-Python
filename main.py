@@ -4,8 +4,8 @@ import requests
 import json
 import random
 from discord.ext import commands
-a
-ctivity = discord.Activity(name=f' Dhar Man', type=3)
+
+activity = discord.Activity(name=f' Dhar Man', type=3)
 # Set this to any status the bot should have on start
 # Types:
 #   1 - Playing ...
@@ -43,5 +43,3 @@ async def on_message(message):
       await ctx.reply('Pong! %0.2fms' % client.latency)
 
 client.run(token)
-
-
