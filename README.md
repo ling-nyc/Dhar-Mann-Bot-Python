@@ -1,5 +1,6 @@
-# Dhar-Man-Bot-Python
+# Dhar-Mann-Bot-Python
 Discord bot that will respond with a random Dhar Man title when dhar man is mentioned
+Invite Dhar Mann to your own server! [Click](https://discord.com/oauth2/authorize?client_id=890733482748280853&scope=bot&permissions=52224)
 
 ### Starting
 Clone the repository, place your bot token in env.example, and then rename it to .env.
