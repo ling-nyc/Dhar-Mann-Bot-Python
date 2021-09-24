@@ -4,6 +4,9 @@ import requests
 import json
 import random
 from discord.ext import commands
+from dotenv import load_dotenv
+
+load_dotenv()
 
 activity = discord.Activity(name=f' Dhar Man', type=3)
 # Set this to any status the bot should have on start
@@ -15,7 +18,7 @@ activity = discord.Activity(name=f' Dhar Man', type=3)
 #   5 - Competing in ...
 client = discord.Client()
 
-token = os.environ['BOT_TOKEN']
+token = os.getenv['BOT_TOKEN']
 
 
 with open('words.json') as f:
