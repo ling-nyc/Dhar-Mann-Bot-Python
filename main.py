@@ -15,7 +15,7 @@ activity = discord.Activity(name=f' Dhar Man', type=3)
 #   5 - Competing in ...
 client = discord.Client()
 
-token = os.getenv['BOT_TOKEN']
+token = os.enviorn.get['BOT_TOKEN']
 
 
 with open('words.json') as f:
