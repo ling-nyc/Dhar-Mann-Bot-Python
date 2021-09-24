@@ -4,9 +4,6 @@ import requests
 import json
 import random
 from discord.ext import commands
-from dotenv import load_dotenv
-
-load_dotenv()
 
 activity = discord.Activity(name=f' Dhar Man', type=3)
 # Set this to any status the bot should have on start
