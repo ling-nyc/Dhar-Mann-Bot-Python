@@ -40,6 +40,6 @@ async def on_message(message):
       await message.reply(title)
     if message.content.startswith('dhar ping'):
 
-      await ctx.reply('Pong! %0.2fms' % client.latency)
+      await message.reply('Pong! %0.2fms' % client.latency)
 
 client.run(token)
