@@ -14,7 +14,7 @@ import json
 
 with open('words.json') as f:words = json.load(f)
 
-class Wisdom(commands.Cog):
+class Wisdom(commands.Cog, description='Receive wisdom from Dhar Mann himself.'):
     def __init__(self, bot):
         self.bot = bot
         self.bot.snipedMessage = ''
