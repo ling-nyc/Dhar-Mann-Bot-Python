@@ -23,3 +23,6 @@ ownerID = 822679038434213908
 
 cat_key = ''
 # Get an api key from https://thecatapi.com/
+
+dog_key = ''
+# Get an api key from https://thedogapi.com/
