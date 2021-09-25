@@ -10,6 +10,10 @@ import requests
 from faker import Faker
 faker = Faker()
 
+import json
+
+with open('words.json') as f:words = json.load(f)
+
 class Wisdom(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -63,6 +67,20 @@ class Wisdom(commands.Cog):
             name=f'Requested by {ctx.author}', icon_url=ctx.author.avatar_url)
         em.set_image(url=str(r[0]["url"]))
         await ctx.send(embed=em)
+    @commands.command(help='Gets a random dog picture')
+    async def dog(self, ctx):
+        req = requests.get(
+            f"https://api.thedogapi.com/v1/images/search?format=json&x-api-key={config.dog_key}")
+        r = req.json()
+        em = discord.Embed(title='Good Boi')
+        em.set_author(
+            name=f'Requested by {ctx.author}', icon_url=ctx.author.avatar_url)
+        em.set_image(url=str(r[0]["url"]))
+        await ctx.send(embed=em)
+    @commands.command(help='Get a random Dhar Mann title', aliases=['man', 'mann'])
+    async def title(self, ctx):
+        title = f"{random.choice(words['people'])} {random.choice(words['actions'])} {random.choice(words['people'])}, {random.choice(words['endings'])}!"
+        await ctx.reply(title)
     @commands.command(help='Snipe the last deleted message')
     async def snipe(self, ctx):
         if self.bot.snipedMessage:
