@@ -23,7 +23,7 @@ class Wisdom(commands.Cog, description='Receive wisdom from Dhar Mann himself.')
     async def on_message(self, msg):
         if any(trigger in msg.content for trigger in config.triggers):
             roast = random.choice(open('insults.txt').readlines())
-            await msg.channel.send(roast)
+            await msg.reply(roast)
 
         if msg.content.startswith(f'<@!{self.bot.user.id}>'):
             await msg.channel.send(f'Use {config.prefix}help for a list of commands')
