@@ -1,45 +1,30 @@
-import os
 import discord
-import requests
-import json
-import random
+import os
+import config
+import time
+from datetime import datetime
 from discord.ext import commands
+from pretty_help import PrettyHelp
 
-activity = discord.Activity(name=f' Dhar Man', type=3)
-# Set this to any status the bot should have on start
-# Types:
-#   1 - Playing ...
-#   2 - Listening to ...
-#   3 - Watching ...
-#   4 - Streaming (you can set url='') ...
-#   5 - Competing in ...
-client = discord.Client()
+bot = commands.Bot(
+    command_prefix=config.prefix,
+    case_insensitive=True,
+    help_command=PrettyHelp(),
+    intents=discord.Intents().all()
 
-token = os.enviorn.get['BOT_TOKEN']
+)
+
+startTime = time.time()
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py') and not filename.startswith('X'):
+        filename = filename[:-3]
+        print(f'Loading cog {filename}')
+        bot.load_extension(f'cogs.{filename}')
 
 
-with open('words.json') as f:
-  words = json.load(f)
-
-# words['people'], words['actions'], words['endings']
-
-@client.event
+@bot.event
 async def on_ready():
-    await client.change_presence(activity=(activity))
+    await bot.change_presence(activity=config.activity)
     print('Bot is ready.')
 
-@client.event 
-async def on_message(message):
-
-  if not message.author.bot:
-
-    if message.content.startswith('dhar man'):
-    
-      title = f"{random.choice(words['people'])} {random.choice(words['actions'])} {random.choice(words['people'])}, {random.choice(words['endings'])}!"
-      
-      await message.reply(title)
-    if message.content.startswith('dhar ping'):
-
-      await message.reply('Pong! %0.2fms' % client.latency)
-
-client.run(token)
+bot.run(config.token)
