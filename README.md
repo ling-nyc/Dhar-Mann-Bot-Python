@@ -15,5 +15,3 @@ python3 main.py
 Typing "Dhar Man" into the chat with it will give you a random dhar man title.
 
 "dhar help" for a list of commands.
-
-Special thanks to [Music-Dude](https://github.com/Music-Dude), he was really helpful.
